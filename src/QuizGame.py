@@ -13,3 +13,49 @@ class QuizGame:
         print("4. 최고 점수")
         print("5. 종료")
         print("-" * 40)
+
+    # ==========================
+    # [기능 요구사항] 3. 숫자 입력(예외처리)
+    # ==========================
+    def get_number_input(self, message, min_num, max_num):
+
+        # True일 동안 반복
+        while True:
+
+            try:
+                # 케이스 1) strip 함수로 입력 앞 뒤 공백제거 처리
+                user_input = input(message).strip()
+
+                # 케이스 2) 빈 입력(Enter)인 경우
+                if user_input == "":
+                    # 안내 메시지 출력
+                    print("입력이 비어있습니다.")
+                    # 재입력 유도
+                    continue
+
+                # 케이스 3) 허용범위 밖 숫자(0, 9)인 경우
+                value = int(user_input)
+
+                # 
+                if min_num <= value <= max_num:
+                    return value
+
+                # 안내 메시지 출력
+                print(
+                    f"{min_num} ~ {max_num} 입력"
+                )
+
+            # 케이스 4) 숫자 변환 처리 실패한 경우(문자열 abc)
+            except ValueError:
+                # 안내 메시지 출력
+                print("숫자를 입력하세요.")
+
+            # 프로그램 실행 중 Ctrl+C(KeyboardInterrupt) 입력 or 
+            # 입력스트림 종료(EOFError) 발생해도 비정상종료하지 않도록 처리
+            except (KeyboardInterrupt, EOFError):
+                # 안내 메시지 출력
+                print("\n프로그램 종료")
+                # 가능한 범위에서 저장
+                self.save_data()
+                # 안전하게 종료
+                exit()
