@@ -58,5 +58,5 @@ class QuizGame:
                 print("\n프로그램을 종료합니다.")
                 # 가능한 범위에서 저장
                 self.save_data()
-                # 안전하게 종료
+                # 프로그램 종료
                 exit()
