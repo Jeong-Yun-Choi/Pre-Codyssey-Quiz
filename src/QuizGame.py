@@ -163,3 +163,39 @@ class QuizGame:
             print("축하합니다! 최고 점수를 갱신했습니다!")
             # 게임이 끝나면 해당 내용을 저장-파일 저장하는 메서드 호출
             self.save_data()
+
+    # ==========================
+    # [기능 요구사항] 7. 퀴즈 추가
+    # ==========================
+    def add_quiz(self):
+
+        print("\n퀴즈 추가\n")
+
+        question = input("문제: ").strip()
+
+        choices = []
+
+        for i in range(4):
+            choice = input(
+                f"선택지 {i+1}: "
+            ).strip()
+
+            choices.append(choice)
+
+        answer = self.get_number_input(
+            "정답 번호: ",
+            1,
+            4
+        )
+
+        quiz = Quiz(
+            question,
+            choices,
+            answer
+        )
+
+        self.quizzes.append(quiz)
+
+        self.save_data()
+
+        print("새로운 추가 완료")
