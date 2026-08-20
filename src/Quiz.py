@@ -1,3 +1,6 @@
+# ==========================
+# [기능 요구사항] 4. Quiz 클래스
+# ==========================
 class Quiz:
     # 퀴즈 클래스의 속성들을 초기화, 객체의 
     def __init__(self, question, choices, answer):
@@ -13,7 +16,7 @@ class Quiz:
     def display(self):
         print("\n" + "-" * 40)
         # 한 문제 출력
-        print(self.question)
+        print(self.question)  
 
         # 자료를 순회하면서 각 요소에 번호(인덱스)를 넣어줌
         for i, choice in enumerate(self.choices, start=1):
