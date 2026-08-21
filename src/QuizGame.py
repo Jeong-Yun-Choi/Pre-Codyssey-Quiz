@@ -1,4 +1,5 @@
 from Quiz import Quiz
+import json
 
 class QuizGame:
     # json 파일명을 상수 선언(클래스 변수) == 공유자원, 변하지 않는 파일이라고 명시
@@ -308,3 +309,95 @@ class QuizGame:
                 
                 # while True 반복문을 종료하여 프로그램 실행을 끝냄
                 break
+
+    # ==========================
+    # [기능 요구사항] 11-1. 파일 저장
+    # ==========================
+    def save_data(self):
+
+        # 파일 저장 과정에서 오류가 발생할 수 있으므로 예외 처리
+        try:
+
+            # JSON 파일에 저장할 데이터를 딕셔너리 형태로 생성
+            data = {
+
+                # self.quizzes에 저장된 각각의 Quiz 객체를
+                # to_dict()를 이용해 딕셔너리로 변환한 뒤 리스트로 저장
+                "quizzes": [quiz.to_dict() for quiz in self.quizzes],
+
+                # 현재 QuizGame 객체의 최고 점수를 저장
+                "best_score": self.best_score
+            }
+
+            # state.json 파일을 쓰기("w") 모드로 열기
+            # encoding="utf-8"을 사용하여 한글도 정상적으로 저장
+            with open(self.FILE_NAME, "w", encoding="utf-8") as file:
+
+                # 딕셔너리 형태의 data를 JSON 형식으로 변환하여 파일에 저장
+                # ensure_ascii=False → 한글을 유니코드 그대로 저장
+                # indent=4 → JSON 파일을 보기 좋게 들여쓰기
+                json.dump(
+                    data,
+                    file,
+                    ensure_ascii=False,
+                    indent=4
+                )
+
+        # 파일 저장 중 오류가 발생하면 실행
+        except Exception as e:
+
+            # 발생한 오류 내용을 e에 저장하고 저장 실패 메시지 출력
+            print(f"저장 실패: {e}")
+
+    # ==========================
+    # [기능 요구사항] 11-2. 파일 불러오기
+    # ==========================
+    def load_data(self):
+        try:
+            # state.json 파일을 읽기 모드("r")로 열고 UTF-8 방식으로 인코딩
+            with open(self.FILE_NAME, "r", encoding="utf-8") as file:
+
+                # JSON 파일의 내용을 파이썬 데이터로 변환
+                data = json.load(file)
+
+            # JSON의 "quizzes"에 저장된 각각의 딕셔너리를
+            # Quiz 객체로 변환하여 퀴즈 목록에 저장
+            self.quizzes = [
+                Quiz.from_dict(q)
+                for q in data["quizzes"]
+            ]
+
+            # JSON에 저장된 최고 점수를 가져와 best_score에 저장
+            # best_score가 없으면 기본값으로 0을 사용
+            self.best_score = data.get("best_score", 0)
+
+            # 불러온 퀴즈의 개수를 화면에 출력
+            print(
+                f"데이터 불러오기 완료 "
+                f"(퀴즈 {len(self.quizzes)}개)"
+            )
+
+        # state.json 파일이 존재하지 않을 때 실행
+        except FileNotFoundError:
+            # 처음 실행되었다는 안내 메시지 출력
+            print("처음 실행입니다. 기본 퀴즈 생성")
+
+            # 기본 퀴즈 5개를 생성하여 quizzes에 저장
+            self.quizzes = self.create_default_quizzes()
+
+            # 생성한 기본 퀴즈를 state.json에 저장
+            self.save_data()
+
+        # JSON 파일이 손상되었거나 필요한 키가 없을 때 실행
+        except (json.JSONDecodeError, KeyError):
+            # 파일이 손상되었다는 안내 메시지 출력
+            print("파일 손상. 기본 데이터 복구")
+
+            # 기본 퀴즈를 새로 생성하여 저장
+            self.quizzes = self.create_default_quizzes()
+
+            # 최고 점수를 0점으로 초기화
+            self.best_score = 0
+
+            # 복구한 기본 데이터를 state.json에 저장
+            self.save_data()
