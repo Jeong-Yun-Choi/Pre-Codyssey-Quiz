@@ -402,4 +402,18 @@ Delta compression using up to 6 threads
 Total 3 (delta 0), reused 0 (delta 0), pack-reused 0 (from 0)
 To https://github.com/Jeong-Yun-Choi/Pre-Codyssey-Quiz.git
    ab9e3a3..a9ae43a  main -> main
+
+
+jeongyun.choi** Pre-Codyssey-Quiz % git pull
+remote: Enumerating objects: 5, done.
+remote: Counting objects: 100% (5/5), done.
+remote: Compressing objects: 100% (2/2), done.
+remote: Total 3 (delta 1), reused 3 (delta 1), pack-reused 0 (from 0)
+오브젝트 묶음 푸는 중: 100% (3/3), 863 bytes | 431.00 KiB/s, 완료.
+https://github.com/Jeong-Yun-Choi/Pre-Codyssey-Quiz URL에서
+   a9ae43a..05665a0  main       -> origin/main
+업데이트 중 a9ae43a..05665a0
+Fast-forward
+ README.md | 29 ++++++++++++++++++++++++++++-
+ 1 file changed, 28 insertions(+), 1 deletion(-)
 ```
