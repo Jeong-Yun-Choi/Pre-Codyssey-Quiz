@@ -169,33 +169,55 @@ class QuizGame:
     # ==========================
     def add_quiz(self):
 
+        
         print("\n퀴즈 추가\n")
 
+        # 사용자에게 문제 내용을 입력받음
+        # input()으로 입력받은 뒤 strip()으로 앞뒤 공백을 제거
+        # 입력한 문자열을 question 변수에 저장
         question = input("문제: ").strip()
 
+        # 선택지를 저장할 빈 리스트 생성
         choices = []
 
+        # 0, 1, 2, 3 → 총 4번 반복
+        # 퀴즈의 선택지 4개를 입력받기 위한 반복문
         for i in range(4):
+
+            # 사용자에게 선택지를 하나 입력받음
+            # i + 1을 사용해서 화면에는
+            # "선택지 1", "선택지 2", "선택지 3", "선택지 4"라고 표시
+            # strip()으로 입력값 앞뒤의 공백을 제거
             choice = input(
                 f"선택지 {i+1}: "
             ).strip()
 
+            # 입력받은 선택지를 choices 리스트에 추가
             choices.append(choice)
 
+        # 사용자에게 정답 번호를 입력받음
+        # get_number_input()을 사용하기 때문에
+        # 1~4 이외의 숫자나 문자가 입력되면 다시 입력받음
         answer = self.get_number_input(
             "정답 번호: ",
             1,
             4
         )
 
+        # 지금까지 입력받은 문제, 선택지, 정답을 이용해서
+        # Quiz 클래스의 객체(인스턴스=실제값=데이터)를 하나 생성
         quiz = Quiz(
             question,
             choices,
             answer
         )
 
+        # 새로 만든 Quiz 객체를
+        # QuizGame 객체의 퀴즈 목록(self.quizzes)에 추가
         self.quizzes.append(quiz)
 
+        # 현재까지의 퀴즈 목록을 state.json 파일에 저장
         self.save_data()
 
-        print("새로운 추가 완료")
+        # 퀴즈 추가가 완료되었다는 메시지를 출력
+        print("새로운 퀴즈가 추가되었습니다!")
