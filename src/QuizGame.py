@@ -258,3 +258,53 @@ class QuizGame:
         print(
         f"\n최고 점수 : {self.best_score}"
         )
+
+    # ==========================
+    # [기능 요구사항] 10. 퀴즈 게임 실행
+    # ==========================
+    def run(self):
+
+    # 프로그램을 계속 실행하기 위한 무한 반복문
+        while True:
+
+            # 사용자에게 메뉴를 출력
+            self.show_menu()
+
+            # 사용자에게 메뉴 번호를 입력받음
+            # 1부터 5까지의 숫자만 입력할 수 있음
+            menu = self.get_number_input(
+                "선택: ",
+                1,
+                5
+            )
+
+            # 메뉴에서 1번을 선택한 경우
+            if menu == 1:
+            # 퀴즈를 시작하는 메서드 호출
+                self.play_quiz()
+
+            # 메뉴에서 2번을 선택한 경우
+            elif menu == 2:
+                # 새로운 퀴즈를 추가하는 메서드 호출
+                self.add_quiz()
+
+            # 메뉴에서 3번을 선택한 경우
+            elif menu == 3:
+            # 저장된 퀴즈 목록을 보여주는 메서드 호출
+                self.show_quizzes()
+
+            # 메뉴에서 4번을 선택한 경우
+            elif menu == 4:
+            # 현재 최고 점수를 보여주는 메서드 호출
+                self.show_best_score()
+
+            # 메뉴에서 5번을 선택한 경우
+            elif menu == 5:
+                # 프로그램 종료 전에 현재 데이터를 저장
+                self.save_data()
+
+                # 프로그램이 종료된다는 메시지 출력
+                print("종료")
+                
+                # while True 반복문을 종료하여 프로그램 실행을 끝냄
+                break
