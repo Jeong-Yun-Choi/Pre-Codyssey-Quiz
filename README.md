@@ -376,3 +376,30 @@ QuizGame
 ```
 
 `Quiz`는 **개별 퀴즈 하나의 데이터와 동작**을 담당하고, `QuizGame`은 **여러 퀴즈와 게임 전체의 흐름**을 담당하도록 역할을 분리했습니다.
+
+<br>
+<br>
+
+### Git Clone 실습
+
+```bash
+jeongyun.choi** ~ % git clone https://github.com/Jeong-Yun-Choi/Pre-Codyssey-Quiz.git
+'Pre-Codyssey-Quiz'에 복제합니다...
+remote: Enumerating objects: 87, done.
+remote: Counting objects: 100% (87/87), done.
+remote: Compressing objects: 100% (66/66), done.
+remote: Total 87 (delta 19), reused 82 (delta 14), pack-reused 0 (from 0)
+오브젝트를 받는 중: 100% (87/87), 21.33 KiB | 10.67 MiB/s, 완료.
+델타를 알아내는 중: 100% (19/19), 완료.
+
+
+jeongyun.choi** Quiz % git push
+오브젝트 나열하는 중: 5, 완료.
+오브젝트 개수 세는 중: 100% (5/5), 완료.
+Delta compression using up to 6 threads
+오브젝트 압축하는 중: 100% (3/3), 완료.
+오브젝트 쓰는 중: 100% (3/3), 4.19 KiB | 4.19 MiB/s, 완료.
+Total 3 (delta 0), reused 0 (delta 0), pack-reused 0 (from 0)
+To https://github.com/Jeong-Yun-Choi/Pre-Codyssey-Quiz.git
+   ab9e3a3..a9ae43a  main -> main
+```
