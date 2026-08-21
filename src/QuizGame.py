@@ -198,6 +198,7 @@ class QuizGame:
         # 사용자에게 정답 번호를 입력받음
         # get_number_input()을 사용하기 때문에
         # 1~4 이외의 숫자나 문자가 입력되면 다시 입력받음
+        # get_number_input 메서드가 잘못된 입력에 대한 처리(공통입력/예외 처리기준 포함)
         answer = self.get_number_input(
             "정답 번호: ",
             1,
