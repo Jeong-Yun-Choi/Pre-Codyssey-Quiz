@@ -222,3 +222,30 @@ class QuizGame:
 
         # 퀴즈 추가가 완료되었다는 메시지를 출력
         print("새로운 퀴즈가 추가되었습니다!")
+
+    # ==========================
+    # [기능 요구사항] 8. 퀴즈 목록 보기
+    # ==========================
+    def show_quizzes(self):
+
+        # 퀴즈 목록에 문제가 하나도 없는지 확인(퀴즈가 없는 경우 처리를 위함)
+        if len(self.quizzes) == 0:
+            # 안내 메시지 출력
+            print("퀴즈가 없습니다!")
+
+            # 메서드를 종료하고 호출한 곳으로 돌아감
+            return
+
+        # 퀴즈 목록 제목 출력
+        print("\n퀴즈 목록")
+
+        # self.quizzes에 들어있는 퀴즈들을 하나씩 꺼냄
+        # enumerate()를 사용해 각 퀴즈에 번호를 붙임
+        # start=1이므로 번호는 1부터 시작
+        for i, quiz in enumerate(self.quizzes, start=1):
+
+            # 퀴즈 번호와 문제 내용을 출력
+            # quiz.question은 현재 quiz 객체의 question 속성
+            print(
+                f"{i}. {quiz.question}"
+            )
