@@ -249,3 +249,12 @@ class QuizGame:
             print(
                 f"{i}. {quiz.question}"
             )
+    # ==========================
+    # [기능 요구사항] 9. 점수 확인
+    # ==========================
+    def show_best_score(self):
+
+        # 현재 저장되어 있는 최고 점수를 출력
+        print(
+        f"\n최고 점수 : {self.best_score}"
+        )
